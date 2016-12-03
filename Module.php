@@ -1,10 +1,16 @@
 <?php
-
 namespace lajax\translatemanager;
+
+
+
+
 
 use Yii;
 use yii\web\ForbiddenHttpException;
 use yii\web\Response;
+
+
+
 
 /**
  * This is the main module class for the TranslateManager module.

@@ -19,7 +19,7 @@ use lajax\translatemanager\models\Language;
         'enableAjaxValidation' => true
     ]); ?>
 
-    <?= $form->field($model, 'language_id')->textInput(['maxlength' => 5]) ?>
+    <?= $form->field($model, 'translate_language_code')->textInput(['maxlength' => 5]) ?>
 
     <?= $form->field($model, 'language')->textInput(['maxlength' => 3]) ?>
 

@@ -17,11 +17,11 @@ var translate = (function () {
     function _translateLanguage($this) {
         var data = {
             id: $this.data('id'),
-            language_id: $('#language_id').val(),
+            translate_language_code: $('#translate_language_code').val(),
             translation: $.trim($this.closest('tr').find('.translation').val())
         };
 
-        helpers.post($('#language_id').data('url'), data);
+        helpers.post($('#translate_language_code').data('url'), data);
     }
 
     /**
@@ -40,7 +40,7 @@ var translate = (function () {
         else  // google translation is enabled - translate and copy translation ...
         {
             if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-                helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
+                helpers.googleTranslate($.trim($this.val()), $('#translate_language_code').val(), function(result) {
                     $this.closest('tr').find('.translation').val(result);
                     _translateLanguage($this.closest('tr').find('button'));
                 });

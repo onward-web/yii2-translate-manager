@@ -1,6 +1,9 @@
 <?php
-
 namespace lajax\translatemanager\controllers;
+
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
 
 use yii\web\Controller;
 use yii\filters\AccessControl;

@@ -12,7 +12,7 @@ use Yii;
 /**
  * This is the model class for table "language".
  *
- * @property string $language_id
+ * @property string $translate_language_code
  * @property string $language
  * @property string $country
  * @property string $name
@@ -60,9 +60,10 @@ class Language extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName() {       
+        
         return Yii::$app->getModule('translatemanager') ?
-               Yii::$app->getModule('translatemanager')->languageTable : '{{%language}}';
+               Yii::$app->getModule('translatemanager')->languageTable : '{{%translate_language}}';
     }
 
     /**
@@ -70,10 +71,10 @@ class Language extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['language_id', 'language', 'country', 'name', 'name_ascii', 'status'], 'required'],
-            [['language_id'], 'string', 'max' => 5],
-            [['language_id'], 'unique'],
-            [['language_id'], 'match', 'pattern' => '/^([a-z]{2}[_-][A-Z]{2}|[a-z]{2})$/'],
+            [['translate_language_code', 'language', 'country', 'name', 'name_ascii', 'status'], 'required'],
+            [['translate_language_code'], 'string', 'max' => 5],
+            [['translate_language_code'], 'unique'],
+            [['translate_language_code'], 'match', 'pattern' => '/^([a-z]{2}[_-][A-Z]{2}|[a-z]{2})$/'],
             [['language', 'country'], 'string', 'max' => 2],
             [['language', 'country'], 'match', 'pattern' => '/^[a-z]{2}$/i'],
             [['name', 'name_ascii'], 'string', 'max' => 32],
@@ -87,7 +88,7 @@ class Language extends \yii\db\ActiveRecord {
      */
     public function attributeLabels() {
         return [
-            'language_id' => Yii::t('model', 'Language ID'),
+            'translate_language_code' => Yii::t('model', 'Language ID'),
             'language' => Yii::t('model', 'Language'),
             'country' => Yii::t('model', 'Country'),
             'name' => Yii::t('model', 'Name'),
@@ -105,7 +106,7 @@ class Language extends \yii\db\ActiveRecord {
     public static function getLanguageNames($active = false) {
         $languageNames = [];
         foreach (self::getLanguages($active, true) as $language) {
-            $languageNames[$language['language_id']] = $language['name'];
+            $languageNames[$language['translate_language_code']] = $language['name'];
         }
 
         return $languageNames;
@@ -165,14 +166,14 @@ class Language extends \yii\db\ActiveRecord {
             }
         }
 
-        return isset($statistics[$this->language_id]) ? $statistics[$this->language_id] : 0;
+        return isset($statistics[$this->translate_language_code]) ? $statistics[$this->translate_language_code] : 0;
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getLanguageTranslate() {
-        return $this->hasOne(LanguageTranslate::className(), ['language' => 'language_id']);
+        return $this->hasOne(LanguageTranslate::className(), ['language' => 'translate_language_code']);
     }
 
     /**
@@ -181,7 +182,7 @@ class Language extends \yii\db\ActiveRecord {
      */
     public function getIds() {
         return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
-                        ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
+                        ->viaTable(LanguageTranslate::tableName(), ['language' => 'translate_language_code']);
     }
 
     /**
@@ -189,7 +190,7 @@ class Language extends \yii\db\ActiveRecord {
      */
     public function getLanguageSources() {
         return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
-                        ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
+                        ->viaTable(LanguageTranslate::tableName(), ['language' => 'translate_language_code']);
     }
 
 }

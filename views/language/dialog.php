@@ -21,7 +21,7 @@ use yii\helpers\Html;
             <?= $form->field($languageTranslate, 'language')->dropDownList(array_merge([
                 '' => Yii::t('language', 'Source')
                 ], $languageTranslate->getTranslatedLanguageNames()), [
-                    'name' => 'language_id',
+                    'name' => 'translate_language_code',
                     'id' => 'translate-manager-language-source',
                     ])->label(Yii::t('language', 'Choosing the language of translation')) ?>
             <?php ActiveForm::end(); ?>
@@ -40,7 +40,7 @@ use yii\helpers\Html;
                 'action' => ['/translatemanager/language/save']
                 ]); ?>
             <?= $form->field($languageTranslate, 'id', ['enableLabel' => false])->hiddenInput(['name' => 'id']) ?>
-            <?= $form->field($languageTranslate, 'language', ['enableLabel' => false])->hiddenInput(['name' => 'language_id']) ?>
+            <?= $form->field($languageTranslate, 'language', ['enableLabel' => false])->hiddenInput(['name' => 'translate_language_code']) ?>
             <?= $form->field($languageTranslate, 'translation')->textarea(['name' => 'translation', 'class' => $languageTranslate->language]) ?>
             <?php ActiveForm::end(); ?>
         </div>

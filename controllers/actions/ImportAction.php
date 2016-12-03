@@ -53,7 +53,7 @@ class ImportAction extends \yii\base\Action {
                     }
 
                     $languageIds = Language::find()
-                        ->select('language_id')
+                        ->select('translate_language_code')
                         ->where(['status' => Language::STATUS_ACTIVE])
                         ->column();
 

@@ -25,7 +25,7 @@ class CreateAction extends \yii\base\Action {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         } else if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->controller->redirect(['view', 'id' => $model->language_id]);
+            return $this->controller->redirect(['view', 'id' => $model->translate_language_code]);
         } else {
             return $this->controller->render('create', [
                         'model' => $model,

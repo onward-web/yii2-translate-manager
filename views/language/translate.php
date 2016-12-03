@@ -12,17 +12,17 @@ use lajax\translatemanager\helpers\Language;
 use lajax\translatemanager\models\Language as Lang;
 
 /* @var $this \yii\web\View */
-/* @var $language_id string */
+/* @var $translate_language_code string */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel lajax\translatemanager\models\searches\LanguageSourceSearch */
 
-$this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);
+$this->title = Yii::t('language', 'Translation into {translate_language_code}', ['translate_language_code' => $translate_language_code]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= Html::hiddenInput('language_id', $language_id, ['id' => 'language_id', 'data-url' => Yii::$app->urlManager->createAbsoluteUrl('/translatemanager/language/save')]); ?>
-<div id="translates" class="<?= $language_id ?>">
+<?= Html::hiddenInput('translate_language_code', $translate_language_code, ['id' => 'translate_language_code', 'data-url' => Yii::$app->urlManager->createAbsoluteUrl('/translatemanager/language/save')]); ?>
+<div id="translates" class="<?= $translate_language_code ?>">
     <?php
     Pjax::begin([
         'id' => 'translates'

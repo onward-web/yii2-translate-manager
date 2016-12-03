@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'language_id',
+            'translate_language_code',
             'name_ascii',
             [
                 'format' => 'raw',
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'status'],
                 'label' => Yii::t('language', 'Status'),
                 'content' => function ($language) {
-                    return Html::activeDropDownList($language, 'status', Language::getStatusNames(), ['class' => 'status', 'id' => $language->language_id, 'data-url' => Yii::$app->urlManager->createUrl('/translatemanager/language/change-status')]);
+                    return Html::activeDropDownList($language, 'status', Language::getStatusNames(), ['class' => 'status', 'id' => $language->translate_language_code, 'data-url' => Yii::$app->urlManager->createUrl('/translatemanager/language/change-status')]);
                 },
             ],
             [
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {translate} {delete}',
                 'buttons' => [
                     'translate' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-list-alt"></span>',['language/translate', 'language_id' => $model->language_id], [
+                        return Html::a('<span class="glyphicon glyphicon-list-alt"></span>',['language/translate', 'translate_language_code' => $model->translate_language_code], [
                                     'title' => Yii::t('language', 'Translate'),
                                     'data-pjax' => '0',
                         ]);

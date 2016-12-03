@@ -19,7 +19,7 @@ var FrontendTranslation = {
         this.params = $language_item.data('params');
         $('#translate-manager-div').dialog({
             modal: true,
-            title: lajax.t('Translation Language: {name}', {name: $language_item.data('language_id')}),
+            title: lajax.t('Translation Language: {name}', {name: $language_item.data('translate_language_code')}),
             minWidth: 500,
             minHeight: 200,
             buttons: [
@@ -58,7 +58,7 @@ var FrontendTranslation = {
                         $(event.target).load(this.dialogURL, {
                             hash: $language_item.data('hash'),
                             category: $language_item.data('category'),
-                            language_id: $language_item.data('language_id')
+                            translate_language_code: $language_item.data('translate_language_code')
                         }, function () {
                             $('#languagetranslate-translation').focus();
                         });

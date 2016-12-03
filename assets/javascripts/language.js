@@ -20,7 +20,7 @@ var Language = {
      */
     changeStatus: function($object) {
         var $data = {
-            language_id: $object.attr('id'),
+            translate_language_code: $object.attr('id'),
             status: $object.val()
         };
         helpers.post($object.data('url'), $data);

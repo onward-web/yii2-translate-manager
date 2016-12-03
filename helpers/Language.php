@@ -24,7 +24,7 @@ class Language
     /**
      * @var string parent span for front end translation.
      */
-    private static $_template = '<span class="language-item" data-category="{category}" data-hash="{hash}" data-language_id="{language_id}" data-params="{params}">{message}</span>';
+    private static $_template = '<span class="language-item" data-category="{category}" data-hash="{hash}" data-translate_language_code="{translate_language_code}" data-params="{params}">{message}</span>';
 
     /**
      * Registering JavaScripts for client side multilingual support.
@@ -44,9 +44,11 @@ class Language
      */
     public static function t($category, $message, $params = [], $language = null)
     {
+        
         if (self::isEnabledTranslate()) {
+           
             return strtr(self::$_template, [
-                '{language_id}' => $language ? $language : Yii::$app->language,
+                '{translate_language_code}' => $language ? $language : Yii::$app->language,
                 '{category}' => $category,
                 '{message}' => Yii::t($category, $message, $params, $language),
                 '{params}' => \yii\helpers\Html::encode(\yii\helpers\Json::encode($params)),
